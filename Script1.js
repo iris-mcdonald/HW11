@@ -20,32 +20,44 @@ $(document).ready(function () {
     });
 });
 
+    function UserException(message) {
+         this.message = message;
+         this.name = 'UserException';
+    }
+
     function clearSelection() {
         console.log("clearSelection reached");
+
         document.getElementById("celsius").checked = false;
         document.getElementById("fahrenheit").checked = false;
         document.getElementById("tempInput").value = "";
         console.log (document.getElementById("celsius").checked);
         console.log(document.getElementById("fahrenheit").checked);
         document.getElementById("outputTemp").innerHTML = " ";
+        document.getElementById("errormsg").innerHTML = " ";
 
         console.info("selection cleared");
     }
 
     function convertTempFtoC(tempNumeric) {//convert Farhenheit to Celsius
         var tempNumeric = (tempNumeric - 32) * (5 / 9);
-        console.info("Convert F to C outputTemp: " + tempNumeric);
-        return tempNumeric;
+        if (isNaN(tempNumeric) == true) {
+            throw new UserException('InvalidDataOnFtoC');
+        } else {
+            return tempNumeric;
+        }
     }
 
     function convertTempCtoF(tempNumeric) {//convert Celsius to Farhenheit
         var tempNumeric = (tempNumeric * (9 / 5) + 32);
-        console.info("Convert C to F outputTemp: " + tempNumeric);
-        return tempNumeric;
+        if (isNaN(tempNumeric) == true) {
+            throw new UserException('InvalidDataOnCtoF');
+        } else {
+            return tempNumeric;
+        }
     }
 
-    function validateInput() {//need to add error processing
-        try {
+    function validateInput() {
             var inputTemp = $('#tempInput').val();
             /*var temperature = document.getElementById("tempInput").value;*/
 
@@ -53,29 +65,19 @@ $(document).ready(function () {
             console.info("tempNumeric: " + tempNumeric);
 
             if (isNaN(tempNumeric) == true) {
-                throw new error('temperature not numeric');
+                throw new UserException('InvalidTemp');
             } else {
                 return tempNumeric;
             }//end of if
 
-        }
-
-        catch(excep) {
-            console.warn("inputTemp not numeric" + except.name +
-                "--" + excep.name);
-        }//end try catch block
-
-    }//end function validateInput
+     }//end function validateInput
 
     function validateConversionType() {
-        try {
-            if ((document.getElementById("fahrenheit").checked == false) &&
+
+        if ((document.getElementById("fahrenheit").checked == false) &&
                 (document.getElementById("celsius").checked == false)) {
-                throw new error('no selection made');
+                throw new UserException('NoTempTypeSelected');
             }
-        } catch(excep) {
-            console.warn("no temperature conversion type selected");
-        }
     }//end function validateConversionType
 
 
@@ -84,38 +86,31 @@ $(document).ready(function () {
         console.info("entered startProcess()");
 
         try {
+            document.getElementById("errormsg").innerHTML = " ";
+
             validateConversionType();
 
             var temperature = validateInput();
-            console.info("temperature after validateInput: " + temperature);
-
+            
             if (document.getElementById("celsius").checked == true) {
                 var newTemp = convertTempFtoC(temperature);
-                console.info("before writing to page, F to C: " + newTemp);
             } else if
-            (document.getElementById("fahrenheit").checked == true) {
-                var newTemp = convertTempCtoF(temperature);
-                console.info("before writing to page, C to F: " + newTemp);
-            };//end if- add logic to send msg to select either celsius or fahrenheit
-
+               (document.getElementById("fahrenheit").checked == true) {
+                    var newTemp = convertTempCtoF(temperature);
+            }//end if
 
             document.getElementById("outputTemp").innerHTML = newTemp;
         }
-        catch(excep) {
-            console.warn("General Error has occurred" + except.name +
-                "--" + excep.message);
-            document.getElement.ById("errormsg").innerHTML =
+        catch(e) {
+            document.getElementById("errormsg").innerHTML =
                 "Invalid data entered";
+            console.warn(e.message, e.name);
         };//end of try catch block
 
     };//end of startProcess
 
 
-    /*$(document).ready(function () {
-        startProcess();
-
-    });*/
-
+    
     /*$(document).ready(function () {
         $("#tempInput").change(function () {
             console.info("The temperature has been changed, run startProcess");
