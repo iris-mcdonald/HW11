@@ -1,10 +1,23 @@
 ﻿body
 {
-    font-size: 14px;
+    font-size: 25px;
 }
 #tryAgain {
 
 }
 #btnexit {
 
+}
+#hdr {
+    display: none;
+}
+#inputform {
+    font-size: 25px;
+}
+#goodbye {
+    display: none;
+    font-size: 30px;
+}
+#page {
+    text-align:center;
 }

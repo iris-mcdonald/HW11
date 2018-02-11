@@ -26,23 +26,31 @@
     <script src="js/Script1.js"></script><!--my javascript file-->
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid" id="page">
+        <h4>Iris McDonald HW11: Temperature Converter</h4><br /><br /><br />
         <form id="inputform">
             <fieldset>
-                <legend>Temperature Converter</legend>
-                <!--Temperature input form-->
-                Temperature: <input id="tempInput" type="text" size="3" maxlength="3"/> <br />
-                Convert to: <input type="radio" name="tempType"
-                                   id="celsius" checked="checked"/>Celsius
+                <legend id="hdr">Temperature Converter</legend>
+                <br />
+                <h4 id="msg">Input a temperature and select a conversion type:</h4>
+                <br />
+                Temperature: <input id="tempInput" type="text" size="3" maxlength="3" />
+                                      <br /><br />
+                convert to:  <input type="radio" name="tempType"
+                                    id="celsius" />Celsius
                 <input type="radio" name="tempType" id="fahrenheit" />Fahrenheit<br />
             </fieldset>
         </form>
-        <h2>result: <span id="outputTemp"></span></h2>
+        <br />
+        <h4>Result: <span id="outputTemp"></span></h4><br /><br />
         <div id="buttons">
-            <button id="tryAgain" type="button" class="btn btn-lg">Try It</button>
+            <button id="convert" type="button" class="btn btn-lg">Convert</button>
+            <button id="tryAgain" type="button" class="btn btn-lg">Try Again</button>
             <button id="btnExit" type="button" class="btn btn-lg">Exit</button>
         </div>
     </div>
+    <p id="goodbye">Goodbye!</p>
 
 </body>
 </html>
+<!--oninput="startProcess()"-->
