@@ -38,7 +38,6 @@ $(document).ready(function () {
         $("#convert").removeClass();
         $("#convert").addClass("btn btn-lg");
 
-
         console.info("selection cleared");
     }
 
@@ -83,14 +82,13 @@ $(document).ready(function () {
             }
     }//end function validateConversionType
 
-
-
     function startProcess() {
         console.info("entered startProcess()");
 
         try {
             document.getElementById("errormsg").innerHTML = " ";
-            
+            document.getElementById("outputTemp").innerHTML = " ";
+
             validateConversionType();
 
             var temperature = validateInput();
@@ -116,14 +114,5 @@ $(document).ready(function () {
         };//end of try catch block
 
     };//end of startProcess
-
-
-    
-    /*$(document).ready(function () {
-        $("#tempInput").change(function () {
-            console.info("The temperature has been changed, run startProcess");
-            startProcess();
-        })
-    });*/
 
 
