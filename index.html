@@ -36,16 +36,15 @@
                 <br />
                 Temperature: <input id="tempInput" type="text" size="3" maxlength="3" />
                                       <br /><br />
-                convert to:  <input type="radio" name="tempType"
-                                    id="celsius" />Celsius
-                <input type="radio" name="tempType" id="fahrenheit" />Fahrenheit<br />
+   convert to:  <input type="radio" name="tempType" id="celsius" />Celsius                                                   
+                <input type="radio" name="tempType" id="fahrenheit" />Fahrenheit
             </fieldset>
         </form>
         <h4>Result: <span id="outputTemp"></span></h4><br />
-        <div id="buttons">
-            <button id="convert" type="button" class="btn btn-lg">Convert</button>
-            <button id="tryAgain" type="button" class="btn btn-lg">Try Again</button>
-            <button id="btnExit" type="button" class="btn btn-lg">Exit</button>
+        <div id="buttons" class="btn-group btn-group-lg">
+            <button id="convert" type="button" class="btn">Convert</button>&nbsp&nbsp
+            <button id="tryAgain" type="button" class="btn">Try Again</button>&nbsp&nbsp
+            <button id="btnExit" type="button" class="btn">Exit</button>
         </div>
         <h4 id="errormsg"></h4>
     </div>

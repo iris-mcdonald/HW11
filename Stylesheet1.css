@@ -24,3 +24,6 @@
 #errormsg {
  color: red;   
 }
+radio {
+    display: inline;
+}

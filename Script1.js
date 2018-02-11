@@ -35,6 +35,9 @@ $(document).ready(function () {
         console.log(document.getElementById("fahrenheit").checked);
         document.getElementById("outputTemp").innerHTML = " ";
         document.getElementById("errormsg").innerHTML = " ";
+        $("#convert").removeClass();
+        $("#convert").addClass("btn btn-lg");
+
 
         console.info("selection cleared");
     }
@@ -87,7 +90,7 @@ $(document).ready(function () {
 
         try {
             document.getElementById("errormsg").innerHTML = " ";
-
+            
             validateConversionType();
 
             var temperature = validateInput();
@@ -100,11 +103,16 @@ $(document).ready(function () {
             }//end if
 
             document.getElementById("outputTemp").innerHTML = newTemp;
+            $("#convert").removeClass();
+            $("#convert").addClass("btn btn-large btn-success")
+            
         }
         catch(e) {
             document.getElementById("errormsg").innerHTML =
                 "Invalid data entered";
             console.warn(e.message, e.name);
+            $("#convert").removeClass();
+            $("#convert").addClass("btn btn-large btn-warning");                     
         };//end of try catch block
 
     };//end of startProcess
